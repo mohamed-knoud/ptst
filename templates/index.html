@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Tracker and Search Tool</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid black;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products prices comparator | tracker</title>
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div id="main">
+        <h1>Product Tracker and Search Tool</h1>
+        <form method="POST" action="{{ url_for('process_data') }}">
+            <label for="search">Search a product : </label>
+            <input type="text" value="{{query}}"name="query" id="search"/>
+            <input type="submit" value="Send    "/>
+        </form>    
+    </div>
+    <div id="plateforms">
+        <button type="button" id="avito">Avito</button>
+        <button type="button" id="ma_annonce">Maroc Annonces</button>
+        <button type="button" id="jumia">Jumia</button>
+    </div>
+    <table id="myTable1" class='table table-striped' style='width:100%'>
+        <thead>
+        <tr><th>Name</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+        {% for item in data1 %}
+            <tr><td>{{ item[0] }}</td>
+                {%if item[1]%}
+                <td>{{ item[1] | int}}</td>
+
+                {% else %}
+                <td>No price</td>
+
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><th>Name</th><th>Price</th></tr>
+        </tfoot>
+    </table>
+    <table id="myTable2" class='table table-striped' style='width:100%'>
+        <thead>
+        <tr><th>Name</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+            {% for item in data2 %}
+            <tr><td>{{ item[0] }}</td>
+                {%if item[1]%}
+
+                <td>{{ item[1] | int }}</td>
+
+                {% else %}
+                <td>No price</td>
+
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><th>Name</th><th>Price</th></tr>
+        </tfoot>
+    </table>
+    <table id="myTable3" class='table table-striped' style='width:100%'>
+        <thead>
+        <tr><th>Name</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+            {% for item in data3 %}
+            <tr><td>{{ item[0] }}</td>
+                {%if item[1] %}
+                <td>{{ item[1].replace("Dhs", "") | int}}</td>
+
+                {% else %}
+                <td>No price</td>
+
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><th>Name</th><th>Price</th></tr>
+        </tfoot>
+    </table>
+    <script>
+        new DataTable('#myTable1', {
+    columnDefs: [{ type: 'num', targets: 1 }]
+});
+
+        new DataTable('#myTable2', {
+    columnDefs: [{ type: 'num', targets: 1 }]
+});
+
+        new DataTable('#myTable3', {
+    columnDefs: [{ type: 'num', targets: 1 }]
+});
+
+     </script>
+     <script>
+        document.querySelectorAll("#plateforms button").forEach(elt=>{
+            elt.addEventListener('click',function(){
+                this.style.textDecoration = 'underline'
+                document.querySelectorAll("#plateforms button").forEach(elt2=>{
+                    if(elt2 !=elt)
+                        elt2.style.textDecoration = 'none'
+                })
+            })
+        })
+        document.getElementById('ma_annonce').addEventListener('click',function(){
+            document.getElementById('myTable2_wrapper').style.display = 'block'
+            document.getElementById('myTable1_wrapper').style.display = 'none'
+            document.getElementById('myTable3_wrapper').style.display = 'none'
+
+        })
+        
+        document.getElementById('jumia').addEventListener('click',function(){
+            document.getElementById('myTable3_wrapper').style.display = 'block'
+            document.getElementById('myTable1_wrapper').style.display = 'none'
+
+            document.getElementById('myTable2_wrapper').style.display = 'none'
+
+        })
+        
+        document.getElementById('avito').addEventListener('click',function(){
+            document.getElementById('myTable1_wrapper').style.display = 'block'
+            document.getElementById('myTable2_wrapper').style.display = 'none'
+
+            document.getElementById('myTable3_wrapper').style.display = 'none'
+
+        })
+     </script>
+        {% if flag %}
+            <script>
+                alert("Choose Platform : Maroc Annoces, Jumia or Avito for results! ")
+            </script>
+        {% endif %}
+
+</body>
+</html>
+
+

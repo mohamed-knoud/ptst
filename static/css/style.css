@@ -1,0 +1,30 @@
+#plateforms{
+    margin-top: 50px;
+    text-align: center;
+}
+
+#plateforms button{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+#plateforms button:hover{
+    background-color: #45a049; /* Darker Green */
+}
+
+#main{
+    text-align: center;
+}
+
+#myTable1_wrapper,#myTable2_wrapper,#myTable3_wrapper{
+    display: none;
+}
