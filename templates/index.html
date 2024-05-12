@@ -105,10 +105,10 @@
         <tr><th>Name</th><th>Price</th></tr>
         </thead>
         <tbody>
-            {% for item in data3 %}
+            {% for item in data4 %}
             <tr><td>{{ item[0] }}</td>
                 {%if item[1] %}
-                <td>{{ item[1].replace("Dhs", "") | int}}</td>
+                <td>{{ item[1] | int}}</td>
 
                 {% else %}
                 <td>No price</td>
@@ -126,10 +126,10 @@
         <tr><th>Name</th><th>Price</th></tr>
         </thead>
         <tbody>
-            {% for item in data3 %}
+            {% for item in data5 %}
             <tr><td>{{ item[0] }}</td>
                 {%if item[1] %}
-                <td>{{ item[1].replace("Dhs", "") | int}}</td>
+                <td>{{ item[1] | int}}</td>
 
                 {% else %}
                 <td>No price</td>
