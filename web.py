@@ -88,7 +88,7 @@ def process_data():
         for span in spanss:
             item3.append(span.string.replace(",", "").replace("Dhs", "").replace(" ", ""))
         items3.append(item3)
-    return render_template('index.html', data1=items1,data2=items2,data3=items3,data4=products_marjane,data6=products_electroplanet,flag=1,query=query)
+    return render_template('index.html', data1=items1,data2=items2,data3=items3,data4=products_marjane,data5=products_electroplanet,flag=1,query=query)
 
 
 if __name__ == '__main__':
