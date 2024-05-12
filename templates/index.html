@@ -23,7 +23,7 @@
 <body>
     <div id="main">
         <h1>Product Tracker and Search Tool</h1>
-        <form method="POST" action="{{ url_for('process_data') }}">
+        <form method="POST" action="/process_data">
             <label for="search">Search a product : </label>
             <input type="text" value="{{query}}"name="query" id="search"/>
             <input type="submit" value="Send    "/>
