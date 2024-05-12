@@ -13,8 +13,8 @@ def home():
 
 @app.route('/process_data', methods=['POST'])
 def process_data():
-    query = request.form.get('query')
     global query 
+    query = request.form.get('query')
     products_marjane  = []
     products_electroplanet = []
     with sync_playwright() as p:
