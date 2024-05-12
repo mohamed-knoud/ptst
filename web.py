@@ -13,17 +13,8 @@ def home():
 
 @app.route('/process_data', methods=['POST'])
 def process_data():
-    global query 
     query = request.form.get('query')
-    res1 = scraper.get(f'https://www.avito.ma/fr/maroc/{query}')
-    res2 = requests.get(f'https://www.marocannonces.com/maroc.html?kw={query}')
-    res3 = requests.get(f'https://www.jumia.ma/catalog/?q={query}')
-    items1 = []
-    items2 = []
-    items3 = []
-    soup1 = BeautifulSoup(res1.text, 'html.parser')
-    soup2 = BeautifulSoup(res2.text, 'html.parser')
-    soup3 = BeautifulSoup(res3.text, 'html.parser')
+    global query 
     products_marjane  = []
     products_electroplanet = []
     with sync_playwright() as p:
@@ -31,11 +22,11 @@ def process_data():
         page = browser.new_page()
         page.goto('https://www.marjane.ma/search/{query}')
         page.wait_for_timeout(5000)
-        res = page.locator("css=li.jsx-665482499.jsx-1583737155.list").all()
+        res = page.query_selector_all("li.jsx-665482499.jsx-1583737155.list")
         for elt in res:
             product = []
-            product.append(elt.locator("css=h2.jsx-3277950657.title").inner_text())
-            product.append(elt.locator("span.jsx-3054832242.price").inner_text())
+            product.append(elt.query_selector("h2.jsx-3277950657.title").inner_text())
+            product.append(elt.query_selector("span.jsx-3054832242.price").inner_text())
             products_marjane.append(product)
         browser.close()
     with sync_playwright() as p:
@@ -54,6 +45,16 @@ def process_data():
             products_electroplanet.append(product)
         browser.close()
 
+    res1 = scraper.get(f'https://www.avito.ma/fr/maroc/{query}')
+    res2 = requests.get(f'https://www.marocannonces.com/maroc.html?kw={query}')
+    res3 = requests.get(f'https://www.jumia.ma/catalog/?q={query}')
+    items1 = []
+    items2 = []
+    items3 = []
+    soup1 = BeautifulSoup(res1.text, 'html.parser')
+    soup2 = BeautifulSoup(res2.text, 'html.parser')
+    soup3 = BeautifulSoup(res3.text, 'html.parser')
+    
     results1 = soup1.find_all("div", class_="sc-b57yxx-1 kBlnTB")
     results2 = soup2.find("div", class_="used-cars")
     results3 = soup3.find_all("article", class_="prd _fb col c-prd")
