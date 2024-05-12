@@ -29,8 +29,7 @@ def process_data():
     with sync_playwright() as p:
         browser = p.firefox.launch()
         page = browser.new_page()
-        page.set_default_timeout(50000)
-        page.goto('https://www.marjane.ma/search/ordinateur')
+        page.goto('https://www.marjane.ma/search/{query}')
         page.wait_for_timeout(5000)
         res = page.locator("css=li.jsx-665482499.jsx-1583737155.list").all()
         for elt in res:
@@ -42,8 +41,7 @@ def process_data():
     with sync_playwright() as p:
         browser = p.firefox.launch()
         page = browser.new_page()
-        page.set_default_timeout(50000)
-        page.goto('https://www.electroplanet.ma/recherche?q=i5')
+        page.goto('https://www.electroplanet.ma/recherche?q={query}')
         page.wait_for_timeout(5000)
         res = page.query_selector_all("li.item.product.product-item")
         for elt in res:
