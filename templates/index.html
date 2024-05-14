@@ -110,15 +110,7 @@
         new DataTable('#myTable3', {
     columnDefs: [{ type: 'num', targets: 1 }]
 });
-
-        new DataTable('#myTable4', {
-    columnDefs: [{ type: 'num', targets: 1 }]
-});
-        new DataTable('#myTable5', {
-    columnDefs: [{ type: 'num', targets: 1 }]
-});
-
-     </script>
+   </script>
      <script>
         document.querySelectorAll("#plateforms button").forEach(elt=>{
             elt.addEventListener('click',function(){
@@ -133,8 +125,6 @@
             document.getElementById('myTable2_wrapper').style.display = 'block'
             document.getElementById('myTable1_wrapper').style.display = 'none'
             document.getElementById('myTable3_wrapper').style.display = 'none'
-            document.getElementById('myTable4_wrapper').style.display = 'none'
-            document.getElementById('myTable5_wrapper').style.display = 'none'
 
         })
         
@@ -144,9 +134,7 @@
 
             document.getElementById('myTable2_wrapper').style.display = 'none'
 
-            
-            document.getElementById('myTable4_wrapper').style.display = 'none'
-            document.getElementById('myTable5_wrapper').style.display = 'none'
+
 
         })
         
@@ -156,33 +144,10 @@
 
             document.getElementById('myTable3_wrapper').style.display = 'none'
 
-            
-            document.getElementById('myTable4_wrapper').style.display = 'none'
-            document.getElementById('myTable5_wrapper').style.display = 'none'
+        
 
         })
-         document.getElementById('marjane').addEventListener('click',function(){
-            document.getElementById('myTable1_wrapper').style.display = 'none'
-            document.getElementById('myTable2_wrapper').style.display = 'none'
-
-            document.getElementById('myTable3_wrapper').style.display = 'none'
-
-            
-            document.getElementById('myTable4_wrapper').style.display = 'block'
-            document.getElementById('myTable5_wrapper').style.display = 'none'
-
-        })
-         document.getElementById('electroplanet').addEventListener('click',function(){
-            document.getElementById('myTable1_wrapper').style.display = 'none'
-            document.getElementById('myTable2_wrapper').style.display = 'none'
-
-            document.getElementById('myTable3_wrapper').style.display = 'none'
-
-            
-            document.getElementById('myTable4_wrapper').style.display = 'none'
-            document.getElementById('myTable5_wrapper').style.display = 'block'
-
-        })
+         
      </script>
         {% if flag %}
             <script>
