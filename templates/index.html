@@ -33,8 +33,6 @@
         <button type="button" id="avito">Avito</button>
         <button type="button" id="ma_annonce">Maroc Annonces</button>
         <button type="button" id="jumia">Jumia</button>
-        <button type="button" id="marjane">Marjane</button>
-        <button type="button" id="electroplanet">Electroplanet</button>
     </div>
     <table id="myTable1" class='table table-striped' style='width:100%'>
         <thead>
@@ -88,48 +86,6 @@
             <tr><td>{{ item[0] }}</td>
                 {%if item[1] %}
                 <td>{{ item[1].replace("Dhs", "") | int}}</td>
-
-                {% else %}
-                <td>No price</td>
-
-                {% endif %}
-            </tr>
-        {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr><th>Name</th><th>Price</th></tr>
-        </tfoot>
-    </table>
-    <table id="myTable4" class='table table-striped' style='width:100%'>
-        <thead>
-        <tr><th>Name</th><th>Price</th></tr>
-        </thead>
-        <tbody>
-            {% for item in data4 %}
-            <tr><td>{{ item[0] }}</td>
-                {%if item[1] %}
-                <td>{{ item[1] | int}}</td>
-
-                {% else %}
-                <td>No price</td>
-
-                {% endif %}
-            </tr>
-        {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr><th>Name</th><th>Price</th></tr>
-        </tfoot>
-    </table>
-    <table id="myTable5" class='table table-striped' style='width:100%'>
-        <thead>
-        <tr><th>Name</th><th>Price</th></tr>
-        </thead>
-        <tbody>
-            {% for item in data5 %}
-            <tr><td>{{ item[0] }}</td>
-                {%if item[1] %}
-                <td>{{ item[1] | int}}</td>
 
                 {% else %}
                 <td>No price</td>
