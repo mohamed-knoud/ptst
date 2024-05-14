@@ -1,5 +1,4 @@
 from flask import Flask, request , render_template
-from playwright.sync_api import sync_playwright
 
 from bs4 import BeautifulSoup
 import cloudscraper
@@ -15,38 +14,6 @@ def home():
 def process_data():
     global query 
     query = request.form.get('query')
-    products_marjane  = []
-    products_electroplanet = []
-    with sync_playwright() as p:
-        browser = p.firefox.launch()
-        page = browser.new_page()
-        page.set_default_timeout(50000)
-        page.goto('https://www.marjane.ma/search/{query}')
-        page.wait_for_timeout(5000)
-        res = page.locator("css=li.jsx-665482499.jsx-1583737155.list").all()
-        for elt in res:
-            product = []
-            product.append(elt.locator("css=h2.jsx-3277950657.title").inner_text())
-            product.append(elt.locator("span.jsx-3054832242.price").inner_text())
-            products_marjane.append(product)
-        browser.close()
-    
-    with sync_playwright() as p:
-        browser = p.firefox.launch()
-        page = browser.new_page()
-        page.set_default_timeout(50000)
-        page.goto('https://www.electroplanet.ma/recherche?q={query}')
-        page.wait_for_timeout(5000)
-        res = page.query_selector_all("li.item.product.product-item")
-        for elt in res:
-            product = []
-            product.append(elt.query_selector("a.product-item-link").inner_text())
-            if(len(elt.query_selector_all("span.price-wrapper"))>1):
-                product.append(elt.query_selector("span.special-price span.price-wrapper").inner_text())
-            else:
-                product.append(elt.query_selector("span.price-wrapper").inner_text())
-            products_electroplanet.append(product)
-        browser.close()
     res1 = scraper.get(f'https://www.avito.ma/fr/maroc/{query}')
     res2 = requests.get(f'https://www.marocannonces.com/maroc.html?kw={query}')
     res3 = requests.get(f'https://www.jumia.ma/catalog/?q={query}')
@@ -88,7 +55,7 @@ def process_data():
         for span in spanss:
             item3.append(span.string.replace(",", "").replace("Dhs", "").replace(" ", ""))
         items3.append(item3)
-    return render_template('index.html', data1=items1,data2=items2,data3=items3,data4=products_marjane,data5=products_electroplanet,flag=1,query=query)
+    return render_template('index.html', data1=items1,data2=items2,data3=items3,flag=1,query=query)
 
 
 if __name__ == '__main__':
