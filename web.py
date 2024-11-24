@@ -23,11 +23,10 @@ def process_data():
     soup1 = BeautifulSoup(res1.text, 'html.parser')
     soup2 = BeautifulSoup(res2.text, 'html.parser')
     soup3 = BeautifulSoup(res3.text, 'html.parser')
-    
+    print(soup3)
     results1 = soup1.find_all("div", class_="sc-b57yxx-1 kBlnTB")
     results2 = soup2.find("div", class_="used-cars")
     results3 = soup3.find_all("article", class_="prd _fb col c-prd")
-    print(results3)
 
 
     for result in results1:
