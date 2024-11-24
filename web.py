@@ -27,7 +27,7 @@ def process_data():
     results1 = soup1.find_all("div", class_="sc-b57yxx-1 kBlnTB")
     results2 = soup2.find("div", class_="used-cars")
     results3 = soup3.find_all("article", class_="prd _fb col c-prd")
-    
+    print(results3)
 
 
     for result in results1:
