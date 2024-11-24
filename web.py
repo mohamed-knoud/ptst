@@ -46,9 +46,9 @@ def process_data():
             item2.append(span.string.replace("DH", "").replace(" ", ""))
             
         items2.append(item2)
-    for result in results3.select('a.core'):
+    for result in results3):
         item3 = []
-        spans = result.select("div.info h3.name")
+        spans = result.select("a.core div.info h3.name")
         for span in spans:
             item3.append(span.string)
         spanss = result.select("div.info div.prc")
