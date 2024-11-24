@@ -26,8 +26,7 @@ def process_data():
     print(soup3)
     results1 = soup1.find_all("div", class_="sc-b57yxx-1 kBlnTB")
     results2 = soup2.find("div", class_="used-cars")
-    results3 = soup3.find_all("article", class_="prd _fb col c-prd")
-
+    results3 = soup3.find("div", class_="-paxs row _no-g _4cl-3cm-shs")
 
     for result in results1:
         item1 = []
@@ -45,7 +44,7 @@ def process_data():
             item2.append(span.string.replace("DH", "").replace(" ", ""))
             
         items2.append(item2)
-    for result in results3:
+    for result in results3.select('article.prd _fb.col.c-prd'):
         item3 = []
         spans = result.select("a.core div.info h3.name")
         for span in spans:
