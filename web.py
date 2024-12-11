@@ -44,16 +44,16 @@ def process_data():
             item2.append(span.string.replace("DH", "").replace(" ", ""))
             
         items2.append(item2)
-    for result in results3.select('article.prd _fb.col.c-prd'):
-        item3 = []
-        spans = result.select("a.core div.info h3.name")
-        for span in spans:
-            item3.append(span.string)
-        spanss = result.select("a.core div.info div.prc")
-        for span in spanss:
-            item3.append(span.string.replace(",", "").replace("Dhs", "").replace(" ", ""))
-        items3.append(item3)
-    return render_template('index.html', data1=items1,data2=items2,data3=items3,flag=1,query=query)
+    # for result in results3.select('article.prd _fb.col.c-prd'):
+    #     item3 = []
+    #     spans = result.select("a.core div.info h3.name")
+    #     for span in spans:
+    #         item3.append(span.string)
+    #     spanss = result.select("a.core div.info div.prc")
+    #     for span in spanss:
+    #         item3.append(span.string.replace(",", "").replace("Dhs", "").replace(" ", ""))
+    #     items3.append(item3)
+    # return render_template('index.html', data1=items1,data2=items2,data3=items3,flag=1,query=query)
 
 
 if __name__ == '__main__':
